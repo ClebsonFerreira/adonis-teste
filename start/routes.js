@@ -16,14 +16,27 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
-Route.resource('patient', 'PatientController')
-  .apiOnly();
+Route.group(() => {
+  Route.get('/', () => {
+    return { verson: '1.0.0' }
+  })
+  Route.post('/users', 'UserController.create')
+  Route.post('/sessions', 'SessionController.create')
+}).prefix('api/v1');
 
-Route.resource('unity', 'UnityController')
-  .apiOnly();
 
-Route.resource('specialty', 'SpecialtyController')
-  .apiOnly();
+Route.group(() => {
+  Route.resource('patient', 'PatientController')
+    .apiOnly();
+
+  Route.resource('unity', 'UnityController')
+    .apiOnly();
+
+  Route.resource('specialty', 'SpecialtyController')
+    .apiOnly();
+
+  Route.resource('doctor', 'DoctorController')
+    .apiOnly();
+
+}).prefix('api/v1').middleware('auth')
+

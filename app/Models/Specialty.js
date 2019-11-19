@@ -12,6 +12,10 @@ class Specialty extends Model {
     Patient(){
         return this.hasMany('App/Models/Patient');
     }
+
+    Doctor() {
+        return this.hasMany('App/Models/Doctor');
+    }
     
 }
 

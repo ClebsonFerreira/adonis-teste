@@ -4,7 +4,7 @@ const Patient = use('App/Models/Patient')
 class PatientController {
 
     async index() {
-        const patients = Patient.query().with('Specialty').with('Unity').fetch();
+        const patients = Patient.query().with('Specialty').with('Unity').fetch()
         return patients
     }
 
